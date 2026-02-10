@@ -1,0 +1,6 @@
+moi je vois 4 dossier un dosser assets pour les js css et img
+un dosiier controler pour les traitement.php
+un dossier model ou il y aurra toute les classe
+un dossier vue pour les page (je ne sait pas si les page seron par fonctionnaliter pour bien parrole dans les dossier different)
+un dossier media pour les upload
+dans la racine index pour la page visiteur, connection.php pour la connection 
