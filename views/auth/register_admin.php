@@ -12,10 +12,9 @@ ob_start();
             <div class="basis-1/2 w-full relative hidden xl:flex justify-center items-center 
                         bg-gradient-to-br from-primary-600 via-primary-400 to-primary-600">
                 <img src="../../assets/app/images/auth/line.png" alt="image"
-                     class="absolute top-0 left-0 w-full h-full" />
+                    class="absolute top-0 left-0 w-full h-full" />
 
-                <div
-                    class="relative z-10 backdrop-blur bg-primary-foreground/40 py-14 px-16 
+                <div class="relative z-10 backdrop-blur bg-primary-foreground/40 py-14 px-16 
                            2xl:py-[84px] 2xl:pl-[50px] 2xl:pr-[136px] rounded max-w-[640px]">
                     <div>
                         <div class="text-4xl leading-[50px] 2xl:text-6xl 2xl:leading-[72px] font-semibold mt-2.5">
@@ -35,19 +34,18 @@ ob_start();
             </div>
 
             <!-- RIGHT SECTION -->
-            <div
-                class="h-screen overflow-y-auto basis-full md:basis-1/2 w-full px-4 py-5 
+            <div class="h-screen overflow-y-auto basis-full md:basis-1/2 w-full px-4 py-5 
                        flex justify-center items-center">
                 <div class="lg:w-[480px]">
 
                     <div class="w-full">
                         <a class="inline-block" href="../../index.php">
-<span class="text-3xl font-bold text-primary">
-                                    <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120"/>
-                                </span>                        </a>
+                            <span class="text-3xl font-bold text-primary">
+                                <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120" />
+                            </span> </a>
 
                         <div class="mt-6 text-2xl font-bold text-default-900">
-                            Création Admin 
+                            Création Admin
                         </div>
                         <div class="text-base text-default-600 mt-2">
                             Formulaire réservé aux administrateurs
@@ -61,8 +59,7 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Nom
                                 </label>
-                                <input type="text" name="nom" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="text" name="nom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Nom de l'administrateur">
                             </div>
@@ -72,10 +69,19 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Prénom
                                 </label>
-                                <input type="text" name="prenom" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="text" name="prenom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Prénom de l'administrateur">
+                            </div>
+
+                            <!-- addresse -->
+                            <div>
+                                <label class="text-sm font-medium text-default-600 mb-2 block">
+                                    Addresse
+                                </label>
+                                <input type="text" name="addresse" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                           text-base text-default-500 focus:outline-none focus:border-primary"
+                                    placeholder="Addresse de l'administrateur">
                             </div>
 
                             <!-- Email -->
@@ -83,8 +89,7 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     E-mail
                                 </label>
-                                <input type="email" name="email" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="email" name="email" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="admin@nana-stage.com">
                             </div>
@@ -94,8 +99,7 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Téléphone
                                 </label>
-                                <input type="tel" name="numero_telephone" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="tel" name="numero_telephone" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="+229 00 00 00 00">
                             </div>
@@ -105,8 +109,7 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Mot de passe
                                 </label>
-                                <input type="password" name="password" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="password" name="password" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Mot de passe sécurisé">
                             </div>
@@ -116,8 +119,7 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Rôle
                                 </label>
-                                <select name="role"
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <select name="role" class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary">
                                     <option value="administrateur">Administrateur</option>
                                     <option value="super_admin">Super administrateur</option>
@@ -125,8 +127,7 @@ ob_start();
                             </div>
 
                             <!-- Submit -->
-                            <button type="submit"
-                                class="inline-flex items-center justify-center font-semibold 
+                            <button type="submit" class="inline-flex items-center justify-center font-semibold 
                                        bg-primary text-primary-foreground hover:bg-primary/80 
                                        h-11 rounded-md px-6 w-full">
                                 Créer l’administrateur

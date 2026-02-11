@@ -1,44 +1,89 @@
 <?php
 
-require_once 'Utilisateur.php';
+require_once 'Utilisateur.class.php';
 
 class Etudiant extends Utilisateur
 {
-  private $etudiantId;
-  private $matricule;
-  private $nom;
-  private $prenom;
-  private $filiere;
-  private $niveauEtude;
-  private $photoProfil;
-  private $dateNaissance;
+    private $etudiantId;
+    private $matricule;
+    private $nom;
+    private $prenom;
+    private $filiere;
+    private $niveauEtude;
+    private $photoProfil;
+    private $dateNaissance;
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->typeUtilisateur = 'etudiant';
-  }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->typeUtilisateur = 'etudiant';
+    }
 
-  // Getters et setters spécifique a etuudiant
+    // Getters et setters spécifique a etuudiant
 
-  public function getEtudiantId() { return $this->etudiantId; }
-  public function getMatricule() { return $this->matricule; }
-  public function setMatricule($matricule) { $this->matricule = $matricule; }
-  public function getNom() { return $this->nom; }
-  public function setNom($nom) { $this->nom = $nom; }
-  public function getPrenom() { return $this->prenom; }
-  public function setPrenom($prenom) { $this->prenom = $prenom; }
-  public function getFiliere() { return $this->filiere; }
-  public function setFiliere($filiere) { $this->filiere = $filiere; }
-  public function getNiveauEtude() { return $this->niveauEtude; }
-  public function setNiveauEtude($niveauEtude) { $this->niveauEtude = $niveauEtude; }
-  public function getPhotoProfil() { return $this->photoProfil; }
-  public function setPhotoProfil($photoProfil) { $this->photoProfil = $photoProfil; }
-  public function getDateNaissance() { return $this->dateNaissance; }
-  public function setDateNaissance($date) { $this->dateNaissance = $date; }
+    public function getEtudiantId()
+    {
+        return $this->etudiantId;
+    }
+    public function getMatricule()
+    {
+        return $this->matricule;
+    }
+    public function setMatricule($matricule)
+    {
+        $this->matricule = $matricule;
+    }
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
+    public function getFiliere()
+    {
+        return $this->filiere;
+    }
+    public function setFiliere($filiere)
+    {
+        $this->filiere = $filiere;
+    }
+    public function getNiveauEtude()
+    {
+        return $this->niveauEtude;
+    }
+    public function setNiveauEtude($niveauEtude)
+    {
+        $this->niveauEtude = $niveauEtude;
+    }
+    public function getPhotoProfil()
+    {
+        return $this->photoProfil;
+    }
+    public function setPhotoProfil($photoProfil)
+    {
+        $this->photoProfil = $photoProfil;
+    }
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+    public function setDateNaissance($date)
+    {
+        $this->dateNaissance = $date;
+    }
 
- // methode pour ajouter un etudiant
-  public function ajouter_etudiant()
+    // methode pour ajouter un etudiant
+    public function ajouter_etudiant()
     {
         try {
             $this->conn->beginTransaction();
@@ -69,8 +114,8 @@ class Etudiant extends Utilisateur
         }
     }
 
-  // methode pour supprimer un etudiant
-  public function supprimer_etudiant()
+    // methode pour supprimer un etudiant
+    public function supprimer_etudiant()
     {
         try {
             $this->conn->beginTransaction();
@@ -91,8 +136,8 @@ class Etudiant extends Utilisateur
         }
     }
 
- // methode pour modifier un etudiant en fonction de son id utilisateur
-  public function modifier_etudiant($id_utilisateur)
+    // methode pour modifier un etudiant en fonction de son id utilisateur
+    public function modifier_etudiant($id_utilisateur)
     {
         try {
             $this->conn->beginTransaction();
@@ -107,7 +152,7 @@ class Etudiant extends Utilisateur
             $stmt->execute([
                 ':matricule' => $this->matricule,
                 ':nom' => $this->nom,
-                
+
                 ':prenom' => $this->prenom,
                 ':filiere' => $this->filiere,
                 ':niveau_etude' => $this->niveauEtude,
@@ -125,9 +170,9 @@ class Etudiant extends Utilisateur
         }
     }
 
-  // methode pour charger les données d'un etudiant avec les donner utilisateur
+    // methode pour charger les données d'un etudiant avec les donner utilisateur
 
-  public function charger_etudiant($id_utilisateur)
+    public function charger_etudiant($id_utilisateur)
     {
         try {
             $stmt = $this->conn->prepare(
@@ -169,8 +214,8 @@ class Etudiant extends Utilisateur
         }
     }
 
-  // methode pour lister tout les etudiants avec leur donner utilisateur
-  public function liste_etudiants()
+    // methode pour lister tout les etudiants avec leur donner utilisateur
+    public function liste_etudiants()
     {
         try {
             $stmt = $this->conn->query(
@@ -183,6 +228,27 @@ class Etudiant extends Utilisateur
         } catch (Exception $e) {
             error_log("Erreur liste étudiants: " . $e->getMessage());
             throw new Exception("Impossible de récupérer la liste des étudiants");
+        }
+    }
+    public function connection_etudiant($user)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("SELECT * FROM etudiant WHERE utilisateur_id = :utilisateur_id");
+            $stmt->execute([':utilisateur_id' => $user['id']]);
+            $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['utilisateur'] = [
+                'id' => $etudiant['id'],
+                'email' => $etudiant['email'],
+                'type' => $etudiant['type_utilisateur'],
+                'nom' => $etudiant['nom'],
+                'prenom' => $etudiant['prenom']
+            ];
+            header("Location: ../../views/etudiant/index.php");
+            exit();
+        } catch (Exception $e) {
+            error_log("Erreur connection admin: " . $e->getMessage());
+            throw new Exception("Impossible de se connecter en tant qu'administrateur");
         }
     }
 }

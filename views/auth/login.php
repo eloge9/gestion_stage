@@ -10,7 +10,8 @@ ob_start();
         <div class="min-h-screen basis-full flex flex-wrap w-full justify-center overflow-y-auto">
             <div
                 class="basis-1/2 bg-primary w-full relative hidden xl:flex justify-center items-center bg-gradient-to-br from-primary-600 via-primary-400 to-primary-600">
-                <img src="../../assets/app/images/auth/line.png" alt="image" class="absolute top-0 left-0 w-full h-full" />
+                <img src="../../assets/app/images/auth/line.png" alt="image"
+                    class="absolute top-0 left-0 w-full h-full" />
                 <div
                     class="relative z-10 backdrop-blur bg-primary-foreground/40 py-14 px-16 2xl:py-[84px] 2xl:pl-[50px] 2xl:pr-[136px] rounded max-w-[640px]">
                     <div>
@@ -40,18 +41,18 @@ ob_start();
                 class="h-screen overflow-y-auto basis-full md:basis-1/2 w-full px-4 py-5 flex justify-center items-center">
                 <div class="lg:w-[480px]">
                     <div x-twmerge="{'': true}">
-<div class="w-full py-10">
+                        <div class="w-full py-10">
                             <a class="inline-block" href="../../index.php">
-<span class="text-3xl font-bold text-primary">
-                                    <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120"/>
-                                </span>                            </a>
+                                <span class="text-3xl font-bold text-primary">
+                                    <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120" />
+                                </span> </a>
                             <div class="2xl:mt-8 mt-6 2xl:text-3xl text-2xl font-bold text-default-900">
                                 Bienvenue sur NanaStage
                             </div>
                             <div class="2xl:text-lg text-base text-default-600 2xl:mt-2 leading-6">
                                 Connectez-vous pour accéder à votre espace de gestion.
                             </div>
-                            <form action="../../controller/auth/traitement_login.php" method="POST" class="mt-5 2xl:mt-7">
+                            <form action="../../controller/auth/login.php" method="POST" class="mt-5 2xl:mt-7">
                                 <div>
                                     <label class="text-sm leading-none inline-block mb-2 font-medium text-default-600"
                                         for="email">E-mail</label>

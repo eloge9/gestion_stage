@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Utilisateur.php';
+require_once 'Utilisateur.class.php';
 
 class Encadreur extends Utilisateur
 {
@@ -20,28 +20,73 @@ class Encadreur extends Utilisateur
     }
 
     // les geeteur et setters
-    public function getEncadreurId() { return $this->encadreurId; }
+    public function getEncadreurId()
+    {
+        return $this->encadreurId;
+    }
 
-    public function getNom() { return $this->nom; }
-    public function setNom($nom) { $this->nom = $nom; }
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
-    public function getPrenom() { return $this->prenom; }
-    public function setPrenom($prenom) { $this->prenom = $prenom; }
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
 
-    public function getDomaineActivite() { return $this->domaineActivite; }
-    public function setDomaineActivite($domaine) { $this->domaineActivite = $domaine; }
+    public function getDomaineActivite()
+    {
+        return $this->domaineActivite;
+    }
+    public function setDomaineActivite($domaine)
+    {
+        $this->domaineActivite = $domaine;
+    }
 
-    public function getNomUniversite() { return $this->nomUniversite; }
-    public function setNomUniversite($universite) { $this->nomUniversite = $universite; }
+    public function getNomUniversite()
+    {
+        return $this->nomUniversite;
+    }
+    public function setNomUniversite($universite)
+    {
+        $this->nomUniversite = $universite;
+    }
 
-    public function getDepartement() { return $this->departement; }
-    public function setDepartement($departement) { $this->departement = $departement; }
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
+    public function setDepartement($departement)
+    {
+        $this->departement = $departement;
+    }
 
-    public function getPoste() { return $this->poste; }
-    public function setPoste($poste) { $this->poste = $poste; }
+    public function getPoste()
+    {
+        return $this->poste;
+    }
+    public function setPoste($poste)
+    {
+        $this->poste = $poste;
+    }
 
-    public function getGrade() { return $this->grade; }
-    public function setGrade($grade) { $this->grade = $grade; }
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+    }
 
     // methode pour ajouter un encadreure
     public function ajouter_encadreur()
@@ -200,6 +245,28 @@ class Encadreur extends Utilisateur
         } catch (Exception $e) {
             error_log("Erreur liste encadreurs: " . $e->getMessage());
             return [];
+        }
+    }
+
+    public function connection_entreprise($user)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("SELECT * FROM encadreur WHERE utilisateur_id = :utilisateur_id");
+            $stmt->execute([':utilisateur_id' => $user['id']]);
+            $encadreur = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['utilisateur'] = [
+                'id' => $encadreur['id'],
+                'email' => $encadreur['email'],
+                'type' => $encadreur['type_utilisateur'],
+                'nom' => $encadreur['nom'],
+                'prenom' => $encadreur['prenom']
+            ];
+            header("Location: ../../views/encadreur/index.php");
+            exit();
+        } catch (Exception $e) {
+            error_log("Erreur connection admin: " . $e->getMessage());
+            throw new Exception("Impossible de se connecter en tant qu'administrateur");
         }
     }
 }

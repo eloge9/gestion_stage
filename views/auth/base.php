@@ -10,7 +10,8 @@
     <title><?php echo $title ?? "NanaStage - Gestion de Stage"; ?></title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../assets/app/images/favicon.ico" />
+    <link rel="icon" href="../../assets/web/img/favicon.png" type="image/png" />
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />

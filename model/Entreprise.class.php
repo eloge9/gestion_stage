@@ -1,5 +1,5 @@
 <?php
-require_once 'Utilisateur.php';
+require_once 'Utilisateur.class.php';
 
 class Entreorise extends Utilisateur
 {
@@ -11,35 +11,74 @@ class Entreorise extends Utilisateur
     private $description;
     private $logo;
 
-  public function __construct()
-  {
-    parent::__construct();
-    $this->typeUtilisateur = 'entreprise';
-  }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->typeUtilisateur = 'entreprise';
+    }
 
-  // geetters et setters spécifique a entreprise
+    // geetters et setters spécifique a entreprise
 
-    public function getEntrepriseId() { return $this->entrepriseId; }
-    public function getMatriculeEntreprise() { return $this->matriculeEntreprise; }
-    public function setMatriculeEntreprise($matricule) { $this->matriculeEntreprise = $matricule; }
+    public function getEntrepriseId()
+    {
+        return $this->entrepriseId;
+    }
+    public function getMatriculeEntreprise()
+    {
+        return $this->matriculeEntreprise;
+    }
+    public function setMatriculeEntreprise($matricule)
+    {
+        $this->matriculeEntreprise = $matricule;
+    }
 
-    public function getNomEntreprise() { return $this->nomEntreprise; }
-    public function setNomEntreprise($nom) { $this->nomEntreprise = $nom; }
+    public function getNomEntreprise()
+    {
+        return $this->nomEntreprise;
+    }
+    public function setNomEntreprise($nom)
+    {
+        $this->nomEntreprise = $nom;
+    }
 
-    public function getDomaineActivite() { return $this->domaineActivite; }
-    public function setDomaineActivite($domaine) { $this->domaineActivite = $domaine; }
+    public function getDomaineActivite()
+    {
+        return $this->domaineActivite;
+    }
+    public function setDomaineActivite($domaine)
+    {
+        $this->domaineActivite = $domaine;
+    }
 
-    public function getSiteWeb() { return $this->siteWeb; }
-    public function setSiteWeb($site) { $this->siteWeb = $site; }
+    public function getSiteWeb()
+    {
+        return $this->siteWeb;
+    }
+    public function setSiteWeb($site)
+    {
+        $this->siteWeb = $site;
+    }
 
-    public function getDescription() { return $this->description; }
-    public function setDescription($desc) { $this->description = $desc; }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function setDescription($desc)
+    {
+        $this->description = $desc;
+    }
 
-    public function getLogo() { return $this->logo; }
-    public function setLogo($logo) { $this->logo = $logo; }
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
 
-  // methode pour ajouter un entreuprise
-  public function ajouter_entreprise()
+    // methode pour ajouter un entreuprise
+    public function ajouter_entreprise()
     {
         try {
             $this->conn->beginTransaction();
@@ -195,4 +234,25 @@ class Entreorise extends Utilisateur
         }
     }
 
+    public function connection_entreprise($user)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("SELECT * FROM entreprise WHERE utilisateur_id = :utilisateur_id");
+            $stmt->execute([':utilisateur_id' => $user['id']]);
+            $entreprise = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['utilisateur'] = [
+                'id' => $entreprise['id'],
+                'email' => $entreprise['email'],
+                'type' => $entreprise['type_utilisateur'],
+                'nom' => $entreprise['nom'],
+                'prenom' => $entreprise['prenom']
+            ];
+            header("Location: ../../views/entreprise/index.php");
+            exit();
+        } catch (Exception $e) {
+            error_log("Erreur connection admin: " . $e->getMessage());
+            throw new Exception("Impossible de se connecter en tant qu'administrateur");
+        }
+    }
 }

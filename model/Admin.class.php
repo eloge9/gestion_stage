@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Utilisateur.php';
+require_once 'Utilisateur.class.php';
 
 class Admin extends Utilisateur
 {
@@ -27,19 +27,40 @@ class Admin extends Utilisateur
     }
 
     // getteur et seet
-    public function getAdminId() { return $this->adminId; }
+    public function getAdminId()
+    {
+        return $this->adminId;
+    }
 
-    public function getNom() { return $this->nom; }
+    public function getNom()
+    {
+        return $this->nom;
+    }
 
-    public function setNom($nom) { $this->nom = $nom; }
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
 
-    public function getPrenom() { return $this->prenom; }
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
 
-    public function setPrenom($prenom) { $this->prenom = $prenom; }
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
 
-    public function getRole() { return $this->role; }
+    public function getRole()
+    {
+        return $this->role;
+    }
 
-    public function setRole($role) { $this->role = $role; }
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
 
     // methode pour ajouter un admmin
     public function ajouter_admin()
@@ -68,7 +89,6 @@ class Admin extends Utilisateur
             $this->conn->commit();
             $this->adminId = $this->conn->lastInsertId();
             return true;
-
         } catch (Exception $e) {
             $this->conn->rollBack();
             error_log("Erreur ajout admin: " . $e->getMessage());
@@ -102,7 +122,6 @@ class Admin extends Utilisateur
 
             $this->conn->commit();
             return true;
-
         } catch (Exception $e) {
             $this->conn->rollBack();
             error_log("Erreur modification admin: " . $e->getMessage());
@@ -128,7 +147,6 @@ class Admin extends Utilisateur
 
             $this->conn->commit();
             return true;
-
         } catch (Exception $e) {
             $this->conn->rollBack();
             error_log("Erreur suppression  de l'admin: " . $e->getMessage());
@@ -168,7 +186,6 @@ class Admin extends Utilisateur
             $this->role = $data['role'];
 
             return true;
-
         } catch (Exception $e) {
             error_log("Erreur chargement admin: " . $e->getMessage());
             return false;
@@ -187,10 +204,31 @@ class Admin extends Utilisateur
                  JOIN admin a ON a.utilisateur_id = u.id"
             );
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         } catch (Exception $e) {
             error_log("Erreur liste admins: " . $e->getMessage());
             return [];
+        }
+    }
+
+    public function connection_admin($user)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("SELECT * FROM admin WHERE utilisateur_id = :utilisateur_id");
+            $stmt->execute([':utilisateur_id' => $user['id']]);
+            $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['utilisateur'] = [
+                'id' => $admin['id'],
+                'email' => $admin['email'],
+                'type' => $admin['type_utilisateur'],
+                'nom' => $admin['nom'],
+                'prenom' => $admin['prenom']
+            ];
+            header("Location: ../../views/admin/index.php");
+            exit();
+        } catch (Exception $e) {
+            error_log("Erreur connection admin: " . $e->getMessage());
+            throw new Exception("Impossible de se connecter en tant qu'administrateur");
         }
     }
 }
