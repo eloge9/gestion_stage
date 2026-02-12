@@ -14,19 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     $user = $utilisateur->connection();
-    header("Location: ../../view/admin/base_admin.php");
+
     if ($user['type_utilisateur'] == 'admin') {
         $admin = new Admin();
         $admin->connection_admin($user);
     } elseif ($user['type_utilisateur'] == 'etudiant') {
-        $etudiant = new $etudiant();
+        $etudiant = new Etudiant();
         $etudiant->connection_etudiant($user);
     } elseif ($user['type_utilisateur'] == 'entreprise') {
-        header("Location: ../../view/entreprise/dashboard.php");
-        exit();
+        $entreprise = new Entreprise();
+        $entreprise->connection_entreprise($user);
     } elseif ($user['type_utilisateur'] == 'encadreur') {
-        header("Location: ../../view/entreprise/dashboard.php");
-        exit();
+        $encadreur = new Encadreur();
+        $encadreur->connection_encadreur($user);
     } else {
         echo "Type d'utilisateur inconnu.";
     }

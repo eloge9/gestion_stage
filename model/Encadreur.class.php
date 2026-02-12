@@ -248,20 +248,18 @@ class Encadreur extends Utilisateur
         }
     }
 
-    public function connection_entreprise($user)
+    public function connection_encadreur($user)
     {
         try {
 
             $stmt = $this->conn->prepare("SELECT * FROM encadreur WHERE utilisateur_id = :utilisateur_id");
             $stmt->execute([':utilisateur_id' => $user['id']]);
             $encadreur = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['utilisateur'] = [
-                'id' => $encadreur['id'],
-                'email' => $encadreur['email'],
-                'type' => $encadreur['type_utilisateur'],
-                'nom' => $encadreur['nom'],
-                'prenom' => $encadreur['prenom']
-            ];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['nom'] =  $encadreur['nom'];
+            $_SESSION['prenom'] =  $encadreur['prenom'];
+            $_SESSION['type'] =  $encadreur['type_utilisateur'];
+            $_SESSION['statut'] =  $encadreur['statut'];
             header("Location: ../../views/encadreur/index.php");
             exit();
         } catch (Exception $e) {

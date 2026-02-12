@@ -1,17 +1,18 @@
   <?php
+require_once 'config/db.php';
 
-  class Utilisateur
-  {
-    protected $id;
-    protected $email;
-    protected $numeroTelephone;
-    protected $adresse;
-    protected $motDePasse;
-    protected $typeUtilisateur;
-    protected $dateCreation;
-    protected $dateModification;
-    protected $statut;
-    protected $conn;
+class Utilisateur
+{
+  protected $id;
+  protected $email;
+  protected $numeroTelephone;
+  protected $adresse;
+  protected $motDePasse;
+  protected $typeUtilisateur;
+  protected $dateCreation;
+  protected $dateModification;
+  protected $statut;
+  protected $conn;
 
     public function __construct()
     {
@@ -208,11 +209,8 @@
       try {
         $stmt = $this->conn->prepare("SELECT * FROM utilisateur WHERE email = :email");
         $stmt->execute([':email' => $this->email]);
-        var_dump($this);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($user);
         $verificateur_password = password_verify($this->motDePasse, $user['mot_de_passe']);
-        var_dump($verificateur_password);
         if (!$user || !$verificateur_password) {
           throw new Exception("Email ou mot de passe incorrect");
         }

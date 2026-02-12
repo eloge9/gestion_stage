@@ -237,13 +237,12 @@ class Etudiant extends Utilisateur
             $stmt = $this->conn->prepare("SELECT * FROM etudiant WHERE utilisateur_id = :utilisateur_id");
             $stmt->execute([':utilisateur_id' => $user['id']]);
             $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['utilisateur'] = [
-                'id' => $etudiant['id'],
-                'email' => $etudiant['email'],
-                'type' => $etudiant['type_utilisateur'],
-                'nom' => $etudiant['nom'],
-                'prenom' => $etudiant['prenom']
-            ];
+            $_SESSION['id'] = $etudiant['id'];
+            $_SESSION['nom'] =  $etudiant['nom'];
+            $_SESSION['prenom'] =  $etudiant['prenom'];
+            $_SESSION['type'] =  $etudiant['type_utilisateur'];
+            $_SESSION['statut'] =  $etudiant['statut'];
+            
             header("Location: ../../views/etudiant/index.php");
             exit();
         } catch (Exception $e) {

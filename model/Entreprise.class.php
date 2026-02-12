@@ -1,7 +1,7 @@
 <?php
 require_once 'Utilisateur.class.php';
 
-class Entreorise extends Utilisateur
+class Entreprise extends Utilisateur
 {
     private $entrepriseId;
     private $matriculeEntreprise;
@@ -241,13 +241,12 @@ class Entreorise extends Utilisateur
             $stmt = $this->conn->prepare("SELECT * FROM entreprise WHERE utilisateur_id = :utilisateur_id");
             $stmt->execute([':utilisateur_id' => $user['id']]);
             $entreprise = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['utilisateur'] = [
-                'id' => $entreprise['id'],
-                'email' => $entreprise['email'],
-                'type' => $entreprise['type_utilisateur'],
-                'nom' => $entreprise['nom'],
-                'prenom' => $entreprise['prenom']
-            ];
+            $_SESSION['id'] = $entreprise['id'];
+            $_SESSION['nom'] =  $entreprise['nom'];
+            $_SESSION['prenom'] =  $entreprise['prenom'];
+            $_SESSION['type'] =  $entreprise['type_utilisateur'];
+            $_SESSION['statut'] =  $entreprise['statut'];
+
             header("Location: ../../views/entreprise/index.php");
             exit();
         } catch (Exception $e) {

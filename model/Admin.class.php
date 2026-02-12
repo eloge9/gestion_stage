@@ -217,13 +217,12 @@ class Admin extends Utilisateur
             $stmt = $this->conn->prepare("SELECT * FROM admin WHERE utilisateur_id = :utilisateur_id");
             $stmt->execute([':utilisateur_id' => $user['id']]);
             $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['utilisateur'] = [
-                'id' => $admin['id'],
-                'email' => $admin['email'],
-                'type' => $admin['type_utilisateur'],
-                'nom' => $admin['nom'],
-                'prenom' => $admin['prenom']
-            ];
+            $_SESSION['id'] =  $admin['id'];
+            $_SESSION['nom'] =  $admin['nom'];
+            $_SESSION['prenom'] =  $admin['prenom'];
+            $_SESSION['role'] =  $admin['role'];
+            $_SESSION['type'] =  $admin['type_utilisateur'];
+            $_SESSION['statut'] =  $admin['statut'];
             header("Location: ../../views/admin/index.php");
             exit();
         } catch (Exception $e) {

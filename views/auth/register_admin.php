@@ -52,56 +52,56 @@ ob_start();
                         </div>
 
                         <!-- FORM ADMIN -->
-                        <form action="#" method="POST" class="mt-6 space-y-4">
+                        <form action="../../controller/auth/register_admin.php" method="POST" class="mt-6 space-y-4">
+                            <input type="hidden" name="type_utilisateur" value="admin" />
 
-                            <!-- Nom -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Nom
-                                </label>
-                                <input type="text" name="nom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Nom de l'administrateur">
+                            <!-- Informations du compte -->
+                            <div class="text-base font-semibold text-default-900 mt-2">Informations du compte</div>
+                            <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
+
+                            <!-- E-mail & Téléphone -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">E-mail</label>
+                                    <input type="email" name="email" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                        placeholder="admin@nana-stage.com">
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">Téléphone</label>
+                                    <input type="tel" name="numero_telephone" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                        placeholder="+229 00 00 00 00">
+                                </div>
                             </div>
 
-                            <!-- Prénom -->
+                            <!-- Adresse -->
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Prénom
+                                    Adresse
                                 </label>
-                                <input type="text" name="prenom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <textarea name="adresse" required class="w-full bg-background border border-default-300 rounded-lg min-h-24 px-3 py-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Prénom de l'administrateur">
+                                    placeholder="Adresse de l'administrateur"></textarea>
                             </div>
 
-                            <!-- addresse -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Addresse
-                                </label>
-                                <input type="text" name="addresse" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Addresse de l'administrateur">
-                            </div>
-
-                            <!-- Email -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    E-mail
-                                </label>
-                                <input type="email" name="email" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="admin@nana-stage.com">
-                            </div>
-
-                            <!-- Téléphone -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Téléphone
-                                </label>
-                                <input type="tel" name="numero_telephone" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="+229 00 00 00 00">
+                            <!-- Informations spécifiques à l’admin -->
+                            <div class="text-base font-semibold text-default-900 mt-4">Informations spécifiques à l’administrateur</div>
+                            <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
+                            <!-- Nom & Prénom -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">Nom</label>
+                                    <input type="text" name="nom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                        placeholder="Nom de l'administrateur">
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">Prénom</label>
+                                    <input type="text" name="prenom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                               text-base text-default-500 focus:outline-none focus;border-primary"
+                                        placeholder="Prénom de l'administrateur">
+                                </div>
                             </div>
 
                             <!-- Mot de passe -->
@@ -109,11 +109,13 @@ ob_start();
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Mot de passe
                                 </label>
-                                <input type="password" name="password" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
+                                <input type="password" name="mot_de_passe" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3 
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Mot de passe sécurisé">
                             </div>
 
+                            <!-- Informations spécifiques à l’admin -->
+                            <div class="text-base font-semibold text-default-900 mt-4">Informations spécifiques à l’administrateur</div>
                             <!-- Rôle -->
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">

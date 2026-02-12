@@ -1,6 +1,6 @@
 <?php
 
-require_once '../model/Encadreur.class.php';
+require_once "../../model/Encadreur.class.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $encadreur = new Encadreur();
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $encadreur->setEmail($_POST['email']);
     $encadreur->setMotDePasse($_POST['mot_de_passe']);
     $encadreur->setNumeroTelephone($_POST['numero_telephone']);
-    $encadreur->setAdresse($_POST['addresse']);
+    $encadreur->setAdresse($_POST['adresse']);
     $encadreur->ajouter_encadreur();
 
     header("Location: ../../view/auth/login.php");

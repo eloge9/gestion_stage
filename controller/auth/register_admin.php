@@ -8,9 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin->setNom($_POST["nom"]);
     $admin->setPrenom($_POST["prenom"]);
     $admin->setEmail($_POST["email"]);
-    $admin->setAdresse($_POST["addresse"]);
+    $admin->setAdresse($_POST["adresse"]);
     $admin->setNumeroTelephone($_POST["numero_telephone"]);
-    $admin->setMotDePasse($_POST["password"]);
+    $admin->setMotDePasse($_POST["mot_de_passe"]);
     $admin->setRole($_POST["role"]);
     $admin->setStatut("Actif");
 

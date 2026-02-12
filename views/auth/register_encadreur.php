@@ -12,17 +12,17 @@ ob_start();
             <div class="basis-1/2 w-full relative hidden xl:flex justify-center items-center
                         bg-gradient-to-br from-primary-600 via-primary-400 to-primary-600">
                 <img src="../../assets/app/images/auth/line.png" alt="image"
-                     class="absolute top-0 left-0 w-full h-full" />
+                    class="absolute top-0 left-0 w-full h-full" />
 
                 <div
                     class="relative z-10 backdrop-blur bg-primary-foreground/40 py-14 px-16
                            2xl:py-[84px] 2xl:pl-[50px] 2xl:pr-[136px] rounded max-w-[640px]">
                     <div>
                         <div class="text-4xl leading-[50px] 2xl:text-6xl 2xl:leading-[72px] font-semibold mt-2.5">
-                            <span class="text-default-600 dark:text-default-300">
+                            <span class="text-default-50">
                                 Inscription <br /> Encadreur <br />
                             </span>
-                            <span class="text-default-900 dark:text-default-50">
+                            <span class="text-primary-100">
                                 NanaStage
                             </span>
                         </div>
@@ -43,11 +43,11 @@ ob_start();
                     <div class="w-full">
                         <a class="inline-block" href="../../index.php">
                             <span class="text-3xl font-bold text-primary">
-                                    <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120"/>
-                                </span>
+                                <img src="../../assets/app/images/logo/logo.png" alt="logo" width="120" />
+                            </span>
                         </a>
 
-                        <div class="mt-6 text-2xl font-bold text-default-900">
+                        <div class="mt-6 text-2xl font-bold text-primary">
                             Bienvenue Encadreur
                         </div>
                         <div class="text-base text-default-600 mt-2">
@@ -55,9 +55,65 @@ ob_start();
                         </div>
 
                         <!-- FORM ENCADREUR -->
-                        <form action="#" method="POST" class="mt-6 space-y-4">
+                        <form action="../../controller/auth/register_encadreur.php" method="POST" class="mt-6 space-y-4">
+                            <input type="hidden" name="type_utilisateur" value="encadreur" />
+
+                            <!-- Informations du compte -->
+                            <div class="text-base font-semibold text-default-900 mt-2">Informations du compte</div>
+                            <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
+
+                            <!-- E-mail -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-sm font-medium text-default-600 mb-2 block">
+                                    E-mail
+                                </label>
+                                <input type="email" name="email" required
+                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                              text-base text-default-500 focus:outline-none focus:border-primary"
+                                    placeholder="email@universite.com">
+                            </div>
+
+                            <!-- Téléphone -->
+                            <div>
+                                <label class="text-sm font-medium text-default-600 mb-2 block">
+                                    Téléphone
+                                </label>
+                                <input type="tel" name="numero_telephone" required
+                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                              text-base text-default-500 focus:outline-none focus:border-primary"
+                                    placeholder="+229 00 00 00 00">
+                            </div>
+                            </div>
+
+                            <!-- Adresse -->
+                            <div>
+                                <label class="text-sm font-medium text-default-600 mb-2 block">
+                                    Adresse
+                                </label>
+                                <textarea name="adresse"
+                                    class="w-full bg-background border border-default-300 rounded-lg min-h-24 px-3 py-3
+                                                 text-base text-default-500 focus:outline-none focus:border-primary"
+                                    placeholder="Adresse professionnelle"></textarea>
+                            </div>
+
+                            <!-- Mot de passe -->
+                            <div>
+                                <label class="text-sm font-medium text-default-600 mb-2 block">
+                                    Mot de passe
+                                </label>
+                                <input type="password" name="mot_de_passe" required
+                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                              text-base text-default-500 focus:outline-none focus:border-primary"
+                                    placeholder="Mot de passe sécurisé">
+                            </div>
+
+                            <!-- Informations spécifiques à l’encadreur -->
+                            <div class="text-base font-semibold text-default-900 mt-4">Informations spécifiques à l’encadreur</div>
+                            <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
 
                             <!-- Nom -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Nom
@@ -78,16 +134,24 @@ ob_start();
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Votre prénom">
                             </div>
+                            </div>
 
                             <!-- Domaine d'activité -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Domaine d’activité
                                 </label>
-                                <input type="text" name="domaine_activite" required
+                                <select name="domaine_activite" required
                                     class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Informatique, Génie civil, etc.">
+                                               text-base text-default-500 focus:outline-none focus:border-primary">
+                                    <option value="">Sélectionnez un domaine</option>
+                                    <option>Informatique</option>
+                                    <option>Génie civil</option>
+                                    <option>Électronique</option>
+                                    <option>Mathématiques</option>
+                                    <option>Économie</option>
+                                </select>
                             </div>
 
                             <!-- Université -->
@@ -100,16 +164,24 @@ ob_start();
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Nom de l’université">
                             </div>
+                            </div>
 
                             <!-- Département -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Département
                                 </label>
-                                <input type="text" name="departement"
+                                <select name="departement"
                                     class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Département">
+                                               text-base text-default-500 focus:outline-none focus:border-primary">
+                                    <option value="">Sélectionnez un département</option>
+                                    <option>Informatique</option>
+                                    <option>Mécanique</option>
+                                    <option>Électrique</option>
+                                    <option>Gestion</option>
+                                    <option>Sciences</option>
+                                </select>
                             </div>
 
                             <!-- Poste -->
@@ -122,50 +194,24 @@ ob_start();
                                            text-base text-default-500 focus:outline-none focus:border-primary"
                                     placeholder="Maître assistant, Enseignant, etc.">
                             </div>
+                            </div>
 
                             <!-- Grade -->
                             <div>
                                 <label class="text-sm font-medium text-default-600 mb-2 block">
                                     Grade
                                 </label>
-                                <input type="text" name="grade"
+                                <select name="grade"
                                     class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Grade académique">
+                                               text-base text-default-500 focus:outline-none focus:border-primary">
+                                    <option value="">Sélectionnez un grade</option>
+                                    <option>Assistant</option>
+                                    <option>Maître assistant</option>
+                                    <option>Maître de conférences</option>
+                                    <option>Professeur</option>
+                                </select>
                             </div>
 
-                            <!-- Email -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    E-mail
-                                </label>
-                                <input type="email" name="email" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="email@universite.com">
-                            </div>
-
-                            <!-- Téléphone -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Téléphone
-                                </label>
-                                <input type="tel" name="numero_telephone" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="+229 00 00 00 00">
-                            </div>
-
-                            <!-- Mot de passe -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Mot de passe
-                                </label>
-                                <input type="password" name="password" required
-                                    class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Mot de passe sécurisé">
-                            </div>
 
                             <!-- Submit -->
                             <button type="submit"

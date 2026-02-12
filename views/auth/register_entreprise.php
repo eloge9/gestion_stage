@@ -18,10 +18,10 @@ ob_start();
                            2xl:py-[84px] 2xl:pl-[50px] 2xl:pr-[136px] rounded max-w-[640px]">
                     <div>
                         <div class="text-4xl leading-[50px] 2xl:text-6xl 2xl:leading-[72px] font-semibold mt-2.5">
-                            <span class="text-default-600 dark:text-default-300">
+                            <span class="text-default-50">
                                 Inscription <br /> Entreprise <br />
                             </span>
-                            <span class="text-default-900 dark:text-default-50">
+                            <span class="text-primary-100">
                                 NanaStage
                             </span>
                         </div>
@@ -45,7 +45,7 @@ ob_start();
                             </span>
                         </a>
 
-                        <div class="mt-6 text-2xl font-bold text-default-900">
+                        <div class="mt-6 text-2xl font-bold text-primary">
                             Bienvenue Entreprise
                         </div>
                         <div class="text-base text-default-600 mt-2">
@@ -53,74 +53,117 @@ ob_start();
                         </div>
 
                         <!-- FORM ENTREPRISE -->
-                        <form action="#" method="POST" class="mt-6 space-y-4">
+                        <form action="../../controller/auth/register_entreprise.php" method="POST" enctype="multipart/form-data" class="mt-6 space-y-4">
+                            <input type="hidden" name="type_utilisateur" value="entreprise" />
 
-                            <!-- Nom entreprise -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Nom de l’entreprise
-                                </label>
-                                <input type="text" name="nom" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                            <!-- Informations du compte -->
+                            <div class="text-base font-semibold text-default-900 mt-2">Informations du compte</div>
+                            <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
+
+                                <!-- E-mail & Téléphone -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-sm font-medium text-default-600 mb-2 block">E-mail professionnel</label>
+                                        <input type="email" name="email" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                            placeholder="contact@entreprise.com">
+                                    </div>
+                                    <div>
+                                        <label class="text-sm font-medium text-default-600 mb-2 block">Téléphone</label>
+                                        <input type="tel" name="numero_telephone" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                            placeholder="+229 00 00 00 00">
+                                    </div>
+                                </div>
+
+                                <!-- Adresse -->
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">
+                                        Adresse
+                                    </label>
+                                    <textarea name="adresse" class="w-full bg-background border border-default-300 rounded-lg min-h-24 px-3 py-3
                                            text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Nom de l’entreprise">
-                            </div>
+                                        placeholder="Adresse de l’entreprise"></textarea>
+                                </div>
 
-                            <!-- Secteur d’activité -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Secteur d’activité
-                                </label>
-                                <input type="text" name="secteur_activite" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                <!-- Mot de passe -->
+                                <div>
+                                    <label class="text-sm font-medium text-default-600 mb-2 block">
+                                        Mot de passe
+                                    </label>
+                                    <input type="password" name="mot_de_passe" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
                                            text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Informatique, BTP, Finance…">
-                            </div>
+                                        placeholder="Mot de passe sécurisé">
+                                </div>
 
-                            <!-- Adresse -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Adresse
-                                </label>
-                                <input type="text" name="adresse" class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                <!-- Informations spécifiques à l’entreprise -->
+                                <div class="text-base font-semibold text-default-900 mt-4">Informations spécifiques à l’entreprise</div>
+                                <div class="space-y-4 border border-default-200 rounded-xl p-4 bg-background">
+
+                                    <!-- Matricule & Nom entreprise -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="text-sm font-medium text-default-600 mb-2 block">Matricule de l’entreprise</label>
+                                            <input type="text" name="matricule_entreprise" class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                                placeholder="Matricule de l’entreprise">
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-medium text-default-600 mb-2 block">Nom de l’entreprise</label>
+                                            <input type="text" name="nom_entreprise" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                                placeholder="Nom de l’entreprise">
+                                        </div>
+                                    </div>
+
+                                    <!-- Domaine & Site web -->
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="text-sm font-medium text-default-600 mb-2 block">Domaine d’activité</label>
+                                            <select name="domaine_activite" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary">
+                                                <option value="">Sélectionnez un domaine</option>
+                                                <option>Informatique</option>
+                                                <option>BTP</option>
+                                                <option>Finance</option>
+                                                <option>Énergie</option>
+                                                <option>Agroalimentaire</option>
+                                                <option>Éducation</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="text-sm font-medium text-default-600 mb-2 block">Site web</label>
+                                            <input type="url" name="site_web" class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                               text-base text-default-500 focus:outline-none focus:border-primary"
+                                                placeholder="https://entreprise.com">
+                                        </div>
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div>
+                                        <label class="text-sm font-medium text-default-600 mb-2 block">
+                                            Description
+                                        </label>
+                                        <textarea name="description" class="w-full bg-background border border-default-300 rounded-lg min-h-24 px-3 py-3
                                            text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Adresse de l’entreprise">
-                            </div>
+                                            placeholder="Présentation de l’entreprise"></textarea>
+                                    </div>
 
-                            <!-- Email -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    E-mail professionnel
-                                </label>
-                                <input type="email" name="email" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="contact@entreprise.com">
-                            </div>
+                                    <!-- Logo -->
+                                    <div>
+                                        <label class="text-sm font-medium text-default-600 mb-2 block">
+                                            Logo
+                                        </label>
+                                        <input type="file" name="logo" class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
+                                           text-base text-default-500 focus:outline-none focus:border-primary" />
+                                    </div>
 
-                            <!-- Téléphone -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Téléphone
-                                </label>
-                                <input type="tel" name="numero_telephone" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="+229 00 00 00 00">
-                            </div>
-
-                            <!-- Mot de passe -->
-                            <div>
-                                <label class="text-sm font-medium text-default-600 mb-2 block">
-                                    Mot de passe
-                                </label>
-                                <input type="password" name="password" required class="w-full bg-background border border-default-300 rounded-lg h-12 px-3
-                                           text-base text-default-500 focus:outline-none focus:border-primary"
-                                    placeholder="Mot de passe sécurisé">
-                            </div>
-
-                            <!-- Submit -->
-                            <button type="submit" class="inline-flex items-center justify-center font-semibold
+                                    <!-- Submit -->
+                                    <button type="submit" class="inline-flex items-center justify-center font-semibold
                                        bg-primary text-primary-foreground hover:bg-primary/80
                                        h-11 rounded-md px-6 w-full">
-                                Inscrire l’entreprise
-                            </button>
+                                        Inscrire l’entreprise
+                                    </button>
 
                         </form>
 
